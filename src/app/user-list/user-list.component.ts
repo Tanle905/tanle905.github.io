@@ -9,6 +9,12 @@ import { User } from './user.model';
 })
 export class UserListComponent implements OnInit {
   usersData: any
+  searchText:string = ''
+  userStatus:string = 'true'
+  maxItemsPerPage:number = 6
+  page:number = 1
+  sortBy:string = "fullname"
+  order:boolean | "asc" | "desc" = "asc"
 
   constructor(private usersService: UserService) {}
   ngOnInit(): void {

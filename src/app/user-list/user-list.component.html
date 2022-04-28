@@ -1,7 +1,64 @@
-<div class="grid grid-cols-4 h-screen overflow-auto">
-  <div class="col-span-2" *ngFor="let userData of usersData">
-    <app-user-detail
-    [userData]="userData"
-    ></app-user-detail>
+<div class="grid grid-cols-4 overflow-hidden min-h-screen">
+  <div
+    class="relative col-span-4 row-span-1 ml-auto p-5 w-full flex h-[5.5rem]"
+  >
+    <button class="absolute top-8 left-10">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6 mr-3 text-gray-500"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+        />
+      </svg>
+    </button>
+    <input
+      type="text"
+      class="rounded-lg bg-gray-200 w-full pl-12"
+      [(ngModel)]="searchText"
+    />
   </div>
+  <div class="col-span-4 flex p-3 h-[3.25rem] font-semibold text-gray-600">
+    <p>display</p>
+    <input
+      type="number"
+      [(ngModel)]="maxItemsPerPage"
+      class="w-6 bg-gray-200 text-center rounded-md mx-2"
+    />
+    <p>items per page</p>
+    <div class="space-x-5">
+      <label for="" class="ml-10">Sort by:</label>
+      <select name="" id="" [(ngModel)]="sortBy">
+        <option value="firstname" selected="selected">Fullname</option>
+        <option value="email">Email</option>
+        <option value="phone">Phone number</option>
+        <option value="status">Status</option>
+      </select>
+      <select name="" id="" [(ngModel)]="order">
+        <option value="asc">Ascendant</option>
+        <option value="desc">Descendant</option>
+      </select>
+    </div>
+  </div>
+  <div
+    class="col-span-2"
+    *ngFor="
+      let userData of usersData
+        | orderBy: sortBy:order
+        | filter: searchText
+        | paginate: { itemsPerPage: maxItemsPerPage, currentPage: page }
+    "
+  >
+    <app-user-detail [userData]="userData"></app-user-detail>
+  </div>
+  <pagination-controls
+    class="col-span-4"
+    (pageChange)="page = $event"
+  ></pagination-controls>
 </div>

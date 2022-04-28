@@ -9,7 +9,10 @@ import { HeaderComponent } from './header/header.component';
 import { UserEditComponent } from './user-list/user-detail/user-edit/user-edit.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UserAddComponent } from './user-add/user-add.component';
-import { NgForm } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { OrderByPipe } from './order-by.pipe';
 
 @NgModule({
   declarations: [
@@ -18,12 +21,16 @@ import { NgForm } from '@angular/forms';
     UserDetailComponent,
     HeaderComponent,
     UserEditComponent,
-    UserAddComponent
+    UserAddComponent,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    Ng2SearchPipeModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

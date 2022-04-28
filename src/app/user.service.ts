@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -15,19 +14,19 @@ export class UserService {
       responseType: 'json',
     });
   }
-  postUsersData() {
+  postUsersData(data: Object) {
     return this.http.post(
       'https://62660a4b63e0f382567baa72.mockapi.io/users',
-      {
-        firstname: 'Laurel',
-        email: 'Xzavier21@hotmail.com',
-        phone: '553-555-9551 x268',
-        DOB: '2021-12-24T17:46:23.889Z',
-        lastname: 'Swift',
-        status: false,
-        id: '1',
-      },
-      { responseType: 'json' }
+      data
     );
+  }
+  putUser(id: number | undefined, data: Object) {
+    return this.http.put(
+      `https://62660a4b63e0f382567baa72.mockapi.io/users/${id}`,
+      data
+    );
+  }
+  deleteUser(id: number | undefined){
+    return this.http.delete(`https://62660a4b63e0f382567baa72.mockapi.io/users/${id}`).subscribe(data=>{})
   }
 }
