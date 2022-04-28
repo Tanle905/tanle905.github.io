@@ -1,0 +1,70 @@
+<div>
+  <p class="text-3xl font-bold text-center">Admin.</p>
+</div>
+<div class="mt-10 flex flex-col p-5 space-y-3">
+  <div
+    routerLink="/"
+    routerLinkActive="bg-blue-200/75 text-blue-700 shadow-sm shadow-blue-200"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="cursor-pointer p-3 px-7 flex font-semibold text-gray-600 rounded-lg hover:bg-blue-200/75 hover:text-blue-700 hover:shadow-sm hover:shadow-blue-200"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-6 w-6 mr-3"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      stroke-width="2"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+      />
+    </svg>
+    <p>DashBoard</p>
+  </div>
+  <div
+    routerLink="/user"
+    routerLinkActive="bg-blue-200/75 text-blue-700 shadow-sm shadow-blue-200"
+    class="cursor-pointer p-3 px-7 flex font-semibold text-gray-600 rounded-lg hover:bg-blue-200/75 hover:text-blue-700"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-5 w-5 mr-3"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      stroke-width="2"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+      />
+    </svg>
+    <p>Manager User</p>
+  </div>
+  <div
+    routerLink="/user-add"
+    routerLinkActive="bg-blue-200/75 text-blue-700 shadow-sm shadow-blue-200"
+    [routerLinkActiveOptions]="{exact:true}"
+    class="cursor-pointer p-3 px-7 flex font-semibold text-gray-600 rounded-lg hover:bg-blue-200/75 hover:text-blue-700"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-6 w-6 mr-3"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      stroke-width="2"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
+      />
+    </svg>
+    <p>Add User</p>
+  </div>
+</div>

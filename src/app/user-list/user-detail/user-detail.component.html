@@ -1,0 +1,20 @@
+<div
+  class="m-3 p-5 bg-blue-200 text-gray-700 rounded-lg shadow-sm hover:bg-blue-600 duration-200 transition hover:text-gray-100 hover:shadow-lg hover:-translate-y-1"
+>
+  <p>
+    {{ userData.firstname }} <span>{{ userData.lastname }}</span>
+  </p>
+  <p>{{ hiddenEmail }}</p>
+  <p>{{ userData.phone }}</p>
+  <p>{{ userData.DOB }}</p>
+  <p *ngIf="userData.status; else offline">
+    <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+    Activated
+  </p>
+  <ng-template #offline>
+    <p>
+      <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+      Suspended
+    </p>
+  </ng-template>
+</div>
