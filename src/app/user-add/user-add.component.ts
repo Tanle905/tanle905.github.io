@@ -12,10 +12,12 @@ export class UserAddComponent implements OnInit {
   userData: User = new User();
 
   addUser(form: NgForm) {
-    this.userService
+    if(!form.invalid){
+      this.userService
       .postUsersData(this.userData)
       .subscribe((data) => console.log(data));
     this.userData = new User();
+    }
   }
   constructor(private userService: UserService) {}
 
