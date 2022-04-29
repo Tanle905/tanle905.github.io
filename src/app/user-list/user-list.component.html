@@ -1,4 +1,4 @@
-<div class="grid grid-cols-4 overflow-hidden min-h-screen">
+<div class="grid grid-cols-4 min-h-screen">
   <div
     class="relative col-span-4 row-span-1 ml-auto p-5 w-full flex h-[5.5rem]"
   >
@@ -47,7 +47,7 @@
     </div>
   </div>
   <div
-    class="col-span-2"
+    class="col-span-2 overflow-auto"
     *ngFor="
       let userData of usersData
         | orderBy: sortBy:order

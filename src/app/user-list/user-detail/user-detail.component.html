@@ -2,11 +2,11 @@
   class="group grid grid-cols-12 m-2 p-5 bg-blue-200 text-gray-700 rounded-lg shadow-sm hover:bg-blue-600 duration-200 transition hover:text-white hover:shadow-lg hover:-translate-y-1"
 >
   <div class="col-span-10">
-    <p>
+    <p class="font-semibold text-lg">
       {{ userData.firstname }} <span>{{ userData.lastname }}</span>
     </p>
     <p>{{ hiddenEmail }}</p>
-    <p>{{ userData.phone }}</p>
+    <p>{{ hiddenPhone }}</p>
     <p>{{ userData.DOB }}</p>
     <p *ngIf="userData.status; else offline">
       <span
@@ -26,6 +26,7 @@
   <div
     class="col-span-2 text-white flex flex-col ml-auto opacity-0 transition group-hover:opacity-100 justify-center"
   >
-    <app-user-edit [userData]="userData"></app-user-edit>
+    <app-user-edit [userData]="userData"
+    ></app-user-edit>
   </div>
 </div>

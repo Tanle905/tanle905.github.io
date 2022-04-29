@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { OrderByPipe } from './order-by.pipe';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { OrderByPipe } from './order-by.pipe';
     HeaderComponent,
     UserEditComponent,
     UserAddComponent,
-    OrderByPipe
+    OrderByPipe,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

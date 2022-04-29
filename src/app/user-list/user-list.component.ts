@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { User } from './user.model';
 
@@ -8,18 +8,24 @@ import { User } from './user.model';
   styleUrls: ['./user-list.component.css'],
 })
 export class UserListComponent implements OnInit {
-  usersData: any
-  searchText:string = ''
-  userStatus:string = 'true'
-  maxItemsPerPage:number = 6
-  page:number = 1
-  sortBy:string = "fullname"
-  order:boolean | "asc" | "desc" = "asc"
+  usersData: User[] = [];
+  searchText: string = '';
+  userStatus: string = 'true';
+  maxItemsPerPage: number = 6;
+  page: number = 1;
+  sortBy: string = 'fullname';
+  order: boolean | 'asc' | 'desc' = 'asc';
 
   constructor(private usersService: UserService) {}
+
   ngOnInit(): void {
-    this.usersService
-      .getUsersData()
-      .subscribe((datas) => {this.usersData = datas});
+    this.usersService.getUsersData().subscribe((datas: any) => {
+      this.usersData = datas;
+    });
+    this.usersService.onDeleteUser.subscribe((deletedUser) => {
+      this.usersData = this.usersData.filter(
+        (userData) => userData.id !== deletedUser.id
+      );
+    });
   }
 }

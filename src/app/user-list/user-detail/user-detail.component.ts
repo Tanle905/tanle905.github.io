@@ -12,11 +12,11 @@ export class UserDetailComponent implements OnInit {
   hiddenPhone: string | undefined;
   constructor() {}
   ngOnInit(): void {
-    const { email,phone } = this.userData;
+    const { email, phone } = this.userData;
     this.hiddenEmail = email && censorEmail(email);
-    this.hiddenPhone = phone && censorPhone(phone)
-    function censorPhone(str: string){
-      return str[0] + '*'.repeat(str.length - 2) + str.slice(-1);
+    this.hiddenPhone = phone && censorPhone(phone);
+    function censorPhone(str: string) {
+      return '*'.repeat(str.length - 3) + str.slice(-3);
     }
     function censorWord(str: string, index: number) {
       return str[0] + '*'.repeat(str.length - 2) + str.slice(index);
