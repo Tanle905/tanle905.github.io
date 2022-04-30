@@ -1,3 +1,7 @@
+# Username and password for demo purpose
+- username: "tanle905"
+- password: "123456"
+
 # AdminProject
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.2.
