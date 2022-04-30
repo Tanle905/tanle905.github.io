@@ -1,4 +1,11 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { User } from '../../../user.model';
@@ -11,20 +18,18 @@ import { User } from '../../../user.model';
 export class UserEditComponent implements OnInit {
   @Input() userData: User = new User();
 
-  constructor(
-    private userService: UserService,
-    private route: Router
-  ) {}
-  userEditHandle(){
-    this.route.navigate(['/admin/user-add'],{state:[this.userData, true]})
+  constructor(private userService: UserService, private route: Router) {}
+  ngOnInit(): void {}
+
+  userEditHandle() {
+    this.route.navigate(['/admin/user-add'], { state: [this.userData, true] });
   }
   userDeleteHandle() {
-    this.userService.deleteUser(this.userData.id)
+    this.userService.deleteUser(this.userData.id);
   }
   userStatusHandle() {
     this.userService
       .putUser(this.userData.id, { status: !this.userData.status })
-      .subscribe((data:User) => this.userData.status = data.status);
+      .subscribe((data: User) => (this.userData.status = data.status));
   }
-  ngOnInit(): void {}
 }

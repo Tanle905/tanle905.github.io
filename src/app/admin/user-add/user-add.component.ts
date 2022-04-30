@@ -12,12 +12,31 @@ import { Router } from '@angular/router';
 export class UserAddComponent implements OnInit {
   userData: User = new User();
   isEditingUser: boolean = false;
-  phoneValidator = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/
-  dateValidator = (new Date().getFullYear()).toString()+"-0"+(new Date().getMonth()+1).toString()+"-"+(new Date().getDate()).toString();
-  twitterLinkValidator = /http(?:s)?:\/\/(?:www\.)?twitter\.com\/([a-zA-Z0-9_]+)/
-  facebookLinkValidator = /http(?:s)?:\/\/(?:www\.)?facebook\.com\/([a-zA-Z0-9_]+)/
-  linkedinLinkValidator = /http(?:s)?:\/\/(?:www\.)?linkedin\.com\/([a-zA-Z0-9_]+)/
+  phoneValidator = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
+  dateValidator =
+    new Date().getFullYear().toString() +
+    '-0' +
+    (new Date().getMonth() + 1).toString() +
+    '-' +
+    new Date().getDate().toString();
+  twitterLinkValidator =
+    /http(?:s)?:\/\/(?:www\.)?twitter\.com\/([a-zA-Z0-9_]+)/;
+  facebookLinkValidator =
+    /http(?:s)?:\/\/(?:www\.)?facebook\.com\/([a-zA-Z0-9_]+)/;
+  linkedinLinkValidator =
+    /http(?:s)?:\/\/(?:www\.)?linkedin\.com\/([a-zA-Z0-9_]+)/;
 
+  constructor(private userService: UserService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.userData.email = '';
+    this.userData.phone = '';
+
+    if (history.state[1]) {
+      this.isEditingUser = true;
+      this.userData = history.state[0];
+    }
+  }
 
   addUser(form: NgForm) {
     if (form.valid) {
@@ -31,17 +50,6 @@ export class UserAddComponent implements OnInit {
         .putUser(this.userData.id, this.userData)
         .subscribe((data) => {});
       this.userData = new User();
-    }
-  }
-  constructor(private userService: UserService, private router: Router) {}
-
-  ngOnInit(): void {
-    this.userData.email = '';
-    this.userData.phone = '';
-
-    if (history.state[1]) {
-      this.isEditingUser = true;
-      this.userData = history.state[0];
     }
   }
 }

@@ -9,16 +9,20 @@ import { User } from '../../user.model';
 export class UserDetailComponent implements OnInit {
   @Input() userData: User = new User();
   hiddenEmail: string | undefined;
-  isHiddenEmail:boolean = true
+  isHiddenEmail: boolean = true;
   hiddenPhone: string | undefined;
-  isHiddenPhone:boolean = true
-  DOB:string | undefined
+  isHiddenPhone: boolean = true;
+  DOB: string | undefined;
   constructor() {}
   ngOnInit(): void {
     const { email, phone } = this.userData;
     this.hiddenEmail = email && censorEmail(email);
     this.hiddenPhone = phone && censorPhone(phone);
-    this.DOB = this.userData.DOB?.toString().slice(0,this.userData.DOB?.toString().indexOf('T'))
+    this.DOB = this.userData.DOB?.toString().slice(
+      0,
+      this.userData.DOB?.toString().indexOf('T')
+    );
+
     function censorPhone(str: string) {
       return '*'.repeat(str.length - 3) + str.slice(-3);
     }
