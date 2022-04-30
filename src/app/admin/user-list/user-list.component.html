@@ -1,0 +1,74 @@
+<div class="grid grid-cols-4 h-screen">
+  <div
+    class="relative col-span-4 row-span-1 ml-auto p-5 w-full flex h-[5.5rem]"
+  >
+    <button class="absolute top-8 left-10">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6 mr-3 text-gray-500"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+        />
+      </svg>
+    </button>
+    <input
+      type="text"
+      class="rounded-lg bg-gray-200 w-full pl-12"
+      [(ngModel)]="searchText"
+    />
+  </div>
+  <div class="col-span-4 flex font-semibold text-gray-600">
+    <div class="space-x-5">
+      <label for="" class="ml-10">Sort by:</label>
+      <select class="rounded-md" [(ngModel)]="sortBy">
+        <option value="firstname" selected="selected">Fullname</option>
+        <option value="email">Email</option>
+        <option value="phone">Phone number</option>
+        <option value="status">Status</option>
+      </select>
+      <select class="rounded-md" [(ngModel)]="order">
+        <option value="asc">Ascendant</option>
+        <option value="desc">Descendant</option>
+      </select>
+    </div>
+    <div class="space-x-5">
+      <label for="" class="ml-10">Filter by:</label>
+      <select class="rounded-md" [(ngModel)]="filterText">
+        <option value="">Full</option>
+        <option value="true">Activated</option>
+        <option value="false" >Suspended</option>
+      </select>
+    </div>
+  </div>
+  <div class="col-span-4 flex flex-col h-[70vh] overflow-auto">
+    <div
+      *ngFor="
+        let userData of usersData
+          | orderBy: sortBy:order
+          | filter: searchText
+          | filter: filterText
+          | paginate: { itemsPerPage: maxItemsPerPage, currentPage: page }
+      "
+    >
+      <app-user-detail [userData]="userData"></app-user-detail>
+    </div>
+  </div>
+  <div class="col-span-4 flex justify-evenly h-10 mt-3 px-5">
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+    <div class="flex">
+      <p class="my-auto mr-2">Display:</p>
+        <select class="rounded-md" [(ngModel)]="maxItemsPerPage" (change)="page=1">
+          <option value="6">6 items per page</option>
+          <option value="8">8 items per page</option>
+          <option value="10">10 items per page</option>
+        </select>
+    </div>
+  </div>
+</div>

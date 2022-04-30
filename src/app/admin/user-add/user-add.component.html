@@ -1,0 +1,212 @@
+<div class="p-10 flex justify-center h-full">
+  <form
+    (submit)="addUser(form)"
+    #form="ngForm"
+    class="text-sm flex flex-col justify-evenly p-10 bg-blue-200 rounded-lg"
+  >
+    <h1 class="text-3xl text-gray-800 font-bold mx-auto">
+      {{ isEditingUser ? "Edit user" : "Add user" }}
+    </h1>
+    <div class="space-y-5">
+      <div class="grid grid-cols-12 font-semibold">
+        <label for="" class="col-start-4 col-span-1 mr-3 my-auto"
+          >First name:</label
+        >
+        <input
+          type="text"
+          class="col-span-2 py-2 rounded-md"
+          [(ngModel)]="userData.firstname"
+          name="firstname"
+          #firstname="ngModel"
+          required
+        />
+        <label for="" class="text-sm ml-2 col-span-1 mr-3 my-auto"
+          >Last name:</label
+        >
+        <input
+          type="text"
+          class="col-span-2 py-2 rounded-md"
+          [(ngModel)]="userData.lastname"
+          name="lastname"
+          #lastname="ngModel"
+          required
+          form
+        />
+        <div
+          class="col-start-5 col-span-2 text-red-500"
+          *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)"
+        >
+          First name is required.
+        </div>
+        <div
+          class="col-start-8 col-span-2 text-red-500"
+          *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)"
+        >
+          Last name is required.
+        </div>
+      </div>
+      <div class="grid grid-cols-12 font-semibold">
+        <label for="" class="col-start-4 col-span-1 mr-3 my-auto">Email:</label>
+        <input
+          type="text"
+          class="col-span-5 py-2 rounded-md"
+          [(ngModel)]="userData.email"
+          name="email"
+          #email="ngModel"
+          required
+          email
+        />
+        <div
+          class="col-start-5 col-span-2 text-red-500"
+          *ngIf="userData.email === '' && (email.dirty || email.touched)"
+        >
+          Email is required.
+        </div>
+        <div
+          class="col-start-5 col-span-2 text-red-500"
+          *ngIf="email.errors?.['email']"
+        >
+          Please input a valid email.
+        </div>
+      </div>
+
+      <div class="grid grid-cols-12 font-semibold">
+        <label for="" class="col-start-4 col-span-1 mr-3 my-auto">Phone:</label>
+        <input
+          type="text"
+          class="col-span-5 py-2 rounded-md"
+          [(ngModel)]="userData.phone"
+          name="phone"
+          [pattern]="phoneValidator"
+          #phone="ngModel"
+          required
+        />
+        <div
+          class="col-start-5 col-span-3 text-red-500"
+          *ngIf="userData.phone === '' && (phone.dirty || phone.touched)"
+        >
+          Phone number is required.
+        </div>
+        <div
+          class="col-start-5 col-span-3 text-red-500"
+          *ngIf="phone.errors?.['pattern']"
+        >
+          Please input a valid phone number.
+        </div>
+      </div>
+      <div class="grid grid-cols-12 font-semibold">
+        <label for="" class="col-start-4 col-span-1 mr-3 my-auto"
+          >Date of birth:</label
+        >
+        <input
+          type="date"
+          class="col-span-5 rounded-md"
+          [(ngModel)]="userData.DOB"
+          name="DOB"
+          [max]="dateValidator"
+          #DOB="ngModel"
+        />
+        <div
+          class="col-start-5 col-span-3 text-red-500"
+          *ngIf="DOB.errors?.['max']"
+        >
+          Please enter a valid date.
+        </div>
+      </div>
+      <div class="grid grid-cols-12 font-semibold">
+        <label for="" class="col-start-4 col-span-1 mr-3 my-auto"
+          >Twitter:</label
+        >
+        <input
+          type="tel"
+          class="col-span-5 py-2 rounded-md"
+          [(ngModel)]="userData.twitterLink"
+          #twitterLink="ngModel"
+          [pattern]="twitterLinkValidator"
+          name="twitter-link"
+        />
+        <div
+          class="col-start-5 col-span-3 text-red-500"
+          *ngIf="twitterLink.errors?.['pattern']"
+        >
+          Please enter a valid Twitter link.
+        </div>
+      </div>
+      <div class="grid grid-cols-12 font-semibold">
+        <label for="" class="col-start-4 col-span-1 mr-3 my-auto"
+          >Facebook:</label
+        >
+        <input
+          type="tel"
+          class="col-span-5 py-2 rounded-md"
+          [(ngModel)]="userData.facebookLink"
+          name="facebook-link"
+          #facebookLink="ngModel"
+          [pattern]="facebookLinkValidator"
+        />
+        <div
+          class="col-start-5 col-span-3 text-red-500"
+          *ngIf="facebookLink.errors?.['pattern']"
+        >
+          Please enter a valid Facebook link.
+        </div>
+      </div>
+      <div class="grid grid-cols-12 font-semibold">
+        <label for="" class="col-start-4 col-span-1 mr-3 my-auto"
+          >LinkedIn:</label
+        >
+        <input
+          type="tel"
+          class="col-span-5 py-2 rounded-md"
+          [(ngModel)]="userData.linkedinLink"
+          name="linkedin-link"
+          #linkedinLink="ngModel"
+          [pattern]="linkedinLinkValidator"
+        />
+        <div
+          class="col-start-5 col-span-3 text-red-500"
+          *ngIf="linkedinLink.errors?.['pattern']"
+        >
+          Please enter a valid LinkedIn link.
+        </div>
+      </div>
+      <div class="grid grid-cols-12 font-semibold">
+        <label for="" class="col-start-4 col-span-1 mr-3 my-auto"
+          >Status:</label
+        >
+        <div class="col-span-1">
+          <input
+            type="radio"
+            name="status"
+            class="py-1 rounded-lg status"
+            value="true"
+            [(ngModel)]="userData.status"
+          />activated
+        </div>
+        <div class="col-span-2">
+          <input
+            type="radio"
+            name="status"
+            class="py-1 rounded-lg status"
+            value="false"
+            [(ngModel)]="userData.status"
+          />suspended
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-cols-12">
+      <button
+        (click)="isEditingUser ? editUser(form) : addUser(form)"
+        class="col-start-4 col-span-1 px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-500 transition text-white"
+      >
+        {{ isEditingUser ? "Update" : "Submit" }}
+      </button>
+      <button
+        type="reset"
+        class="ml-5 mr-16 col-start-5 col-span-2 px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-500 transition text-white"
+      >
+        Clear
+      </button>
+    </div>
+  </form>
+</div>

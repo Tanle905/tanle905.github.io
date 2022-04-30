@@ -7,6 +7,8 @@ export class User {
     public phone?: string,
     public DOB?: number,
     public status?: boolean,
-    public socialLinks?: string[]
+    public twitterLink?: string,
+    public facebookLink?:string,
+    public linkedinLink?:string
   ) {}
 }

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
-import { User } from './user-list/user.model';
+import { User } from '../admin/user.model';
 
 @Injectable({
   providedIn: 'root',

@@ -21,11 +21,15 @@ export class AuthGuardService implements CanActivate {
     | UrlTree
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
-    return this.authService.isAuthenticated().then((authenticated) => {
-      if (authenticated) {
+    return this.authService
+      .isAuthenticated()
+      .then(() => {
+        console.log(this.authService.isLoggedIn)
         return true;
-      } else return this.route.navigate(['/login']);
-    });
+      })
+      .catch(() => {
+        return this.route.navigate(['/login']);
+      });
   }
   constructor(private authService: AuthService, private route: Router) {}
 }
