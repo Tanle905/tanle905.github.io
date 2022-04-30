@@ -16,6 +16,7 @@ import { OrderByPipe } from './order-by.pipe';
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginFailedModalComponent } from './login/login-failed-modal/login-failed-modal.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { LoginFailedModalComponent } from './login/login-failed-modal/login-fail
     OrderByPipe,
     LoginComponent,
     AdminComponent,
-    LoginFailedModalComponent
+    LoginFailedModalComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
