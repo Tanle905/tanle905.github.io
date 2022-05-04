@@ -31,6 +31,7 @@ export class UserAddComponent implements OnInit {
   ngOnInit(): void {
     this.userData.email = '';
     this.userData.phone = '';
+    this.userData.status = true;
 
     if (history.state[1]) {
       this.isEditingUser = true;
@@ -41,7 +42,7 @@ export class UserAddComponent implements OnInit {
   addUser(form: NgForm) {
     if (form.valid) {
       this.userService.postUsersData(this.userData).subscribe((data) => {});
-      this.userData = new User();
+      form.reset;
     }
   }
   editUser(form: NgForm) {

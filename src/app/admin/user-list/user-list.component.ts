@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { interval, Subscription } from 'rxjs';
 import { UserService } from '../../services/user.service';
 import { User } from '../user.model';
 
@@ -7,15 +8,16 @@ import { User } from '../user.model';
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css'],
 })
-export class UserListComponent implements OnInit {
+export class UserListComponent implements OnInit, OnDestroy {
   usersData: User[] = [];
   searchText: string = '';
-  filterText:string = ''
+  filterText: string = '';
   userStatus: string = 'true';
   maxItemsPerPage: number = 6;
   page: number = 1;
   sortBy: string = 'firstname';
   order: boolean | 'asc' | 'desc' = 'asc';
+  onDeleteUserSubscription: Subscription = new Subscription();
 
   constructor(private usersService: UserService) {}
 
@@ -23,10 +25,15 @@ export class UserListComponent implements OnInit {
     this.usersService.getUsersData().subscribe((datas: any) => {
       this.usersData = datas;
     });
-    this.usersService.onDeleteUser.subscribe((deletedUser) => {
-      this.usersData = this.usersData.filter(
-        (userData) => userData.id !== deletedUser.id
-      );
-    });
+    this.onDeleteUserSubscription = this.usersService.onDeleteUser.subscribe(
+      (deletedUser) => {
+        this.usersData = this.usersData.filter(
+          (data) => data.id !== deletedUser.id
+        );
+      }
+    );
+  }
+  ngOnDestroy(): void {
+    this.onDeleteUserSubscription.unsubscribe();
   }
 }

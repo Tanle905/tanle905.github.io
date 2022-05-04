@@ -1,6 +1,6 @@
 <div class="p-10 flex justify-center h-full">
   <form
-    (submit)="addUser(form)"
+    (ngSubmit)="addUser(form)"
     #form="ngForm"
     class="text-sm flex flex-col justify-evenly p-10 bg-blue-200 rounded-lg"
   >
@@ -179,7 +179,7 @@
             type="radio"
             name="status"
             class="py-1 rounded-lg status"
-            value="true"
+            [value]="true"
             [(ngModel)]="userData.status"
           />activated
         </div>
@@ -188,7 +188,7 @@
             type="radio"
             name="status"
             class="py-1 rounded-lg status"
-            value="false"
+            [value]="false"
             [(ngModel)]="userData.status"
           />suspended
         </div>
@@ -196,8 +196,9 @@
     </div>
     <div class="grid grid-cols-12">
       <button
+        [disabled]="form.invalid"
         (click)="isEditingUser ? editUser(form) : addUser(form)"
-        class="col-start-4 col-span-1 px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-500 transition text-white"
+        class="col-start-4 disabled:bg-gray-500 col-span-1 px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-500 transition text-white"
       >
         {{ isEditingUser ? "Update" : "Submit" }}
       </button>

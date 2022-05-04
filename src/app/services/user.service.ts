@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { User } from '../admin/user.model';
 
 @Injectable({
@@ -8,7 +9,7 @@ import { User } from '../admin/user.model';
 export class UserService {
   constructor(private http: HttpClient) {}
   ngOnInit() {}
-  onDeleteUser = new EventEmitter<User>();
+  onDeleteUser = new Subject<User>();
   getUsersData() {
     return this.http.get('https://62660a4b63e0f382567baa72.mockapi.io/users', {
       observe: 'body',
@@ -30,6 +31,6 @@ export class UserService {
   deleteUser(id: number | undefined) {
     return this.http
       .delete(`https://62660a4b63e0f382567baa72.mockapi.io/users/${id}`)
-      .subscribe((data: User) => this.onDeleteUser.emit(data));
+      .subscribe((data: User) => this.onDeleteUser.next(data));
   }
 }
