@@ -30,9 +30,6 @@ export class UserAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.userData.email = '';
-    this.userData.phone = '';
-    this.userData.status = true;
-
     if (history.state[1]) {
       this.isEditingUser = true;
       this.userData = history.state[0];

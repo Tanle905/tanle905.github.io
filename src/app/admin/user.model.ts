@@ -1,14 +1,9 @@
 export class User {
   constructor(
     public id?:number,
-    public firstname?: string,
-    public lastname?: string,
+    public name?: string,
+    public dob?: number,
     public email?: string,
-    public phone?: string,
-    public DOB?: number,
-    public status?: boolean,
-    public twitterLink?: string,
-    public facebookLink?:string,
-    public linkedinLink?:string
+    public age?: number
   ) {}
 }

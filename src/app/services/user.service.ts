@@ -11,14 +11,14 @@ export class UserService {
   ngOnInit() {}
   onDeleteUser = new Subject<User>();
   getUsersData() {
-    return this.http.get('https://62660a4b63e0f382567baa72.mockapi.io/users', {
+    return this.http.get('http://localhost:8080/api/v1/student', {
       observe: 'body',
       responseType: 'json',
     });
   }
   postUsersData(data: User) {
     return this.http.post(
-      'https://62660a4b63e0f382567baa72.mockapi.io/users',
+      'http://localhost:8080/api/v1/student',
       data
     );
   }

@@ -27,9 +27,4 @@ export class UserEditComponent implements OnInit {
   userDeleteHandle() {
     this.userService.deleteUser(this.userData.id);
   }
-  userStatusHandle() {
-    this.userService
-      .putUser(this.userData.id, { status: !this.userData.status })
-      .subscribe((data: User) => (this.userData.status = data.status));
-  }
 }

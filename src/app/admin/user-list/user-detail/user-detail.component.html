@@ -3,7 +3,7 @@
 >
   <div class="col-span-11 grid grid-cols-12">
     <p class="font-semibold text-lg col-span-2">
-      {{ userData.firstname }} <span>{{ userData.lastname }}</span>
+      {{userData.name}}
     </p>
     <div class="col-span-3 flex">
       <p class="mr-1">{{ isHiddenEmail ? hiddenEmail : userData.email }}</p>
@@ -48,25 +48,7 @@
         </p>
       </ng-template>
     </div>
-    <div class="col-span-2 flex text-sm">
-      <p class="mr-1">{{ isHiddenPhone ? hiddenPhone : userData.phone }}</p>
-      <p class="cursor-pointer" (click)="isHiddenPhone = !isHiddenPhone">
-        <svg
-          *ngIf="isHiddenPhone; else hidden"
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"
-          />
-        </svg>
-      </p>
+    <div class="col-span-1 flex text-sm">
       <ng-template #hidden (click)="isHiddenEmail = !isHiddenEmail">
         <p class="cursor-pointer">
           <svg
@@ -92,20 +74,7 @@
       </ng-template>
     </div>
     <p class="col-span-2">{{ DOB | date : 'dd/M/yyyy' }}</p>
-    <p *ngIf="userData.status; else suspense" class="col-span-2">
-      <span
-        class="relative inline-flex rounded-full h-3 w-3 bg-green-500"
-      ></span>
-      Activated
-    </p>
-    <ng-template #suspense>
-      <p class="col-span-2">
-        <span
-          class="relative inline-flex rounded-full h-3 w-3 bg-red-500"
-        ></span>
-        Suspended
-      </p>
-    </ng-template>
+    <p class="col-span-1">{{ userData.age }}</p>
   </div>
   <div
     class="col-span-1 text-white opacity-0 transition group-hover:opacity-100"

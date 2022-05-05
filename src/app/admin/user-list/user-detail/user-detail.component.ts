@@ -15,17 +15,13 @@ export class UserDetailComponent implements OnInit {
   DOB: string | undefined;
   constructor() {}
   ngOnInit(): void {
-    const { email, phone } = this.userData;
+    const { email } = this.userData;
     this.hiddenEmail = email && censorEmail(email);
-    this.hiddenPhone = phone && censorPhone(phone);
-    this.DOB = this.userData.DOB?.toString().slice(
+    this.DOB = this.userData.dob?.toString().slice(
       0,
-      this.userData.DOB?.toString().indexOf('T')
+      this.userData.dob?.toString().indexOf('T')
     );
 
-    function censorPhone(str: string) {
-      return '*'.repeat(str.length - 3) + str.slice(-3);
-    }
     function censorWord(str: string, index: number) {
       return str[0] + '*'.repeat(str.length - 2) + str.slice(index);
     }
