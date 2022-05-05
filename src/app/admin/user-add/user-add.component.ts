@@ -42,7 +42,7 @@ export class UserAddComponent implements OnInit {
   addUser(form: NgForm) {
     if (form.valid) {
       this.userService.postUsersData(this.userData).subscribe((data) => {});
-      form.reset;
+      form.resetForm();
     }
   }
   editUser(form: NgForm) {
@@ -50,7 +50,7 @@ export class UserAddComponent implements OnInit {
       this.userService
         .putUser(this.userData.id, this.userData)
         .subscribe((data) => {});
-      this.userData = new User();
+      form.resetForm();
     }
   }
 }
