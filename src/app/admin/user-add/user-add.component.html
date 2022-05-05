@@ -1,6 +1,6 @@
 <div class="p-10 flex justify-center h-full">
   <form
-    (ngSubmit)="addUser(form)"
+    (ngSubmit)="isEditingUser ? editUser(form) : addUser(form)"
     #form="ngForm"
     class="text-sm flex flex-col justify-evenly p-10 bg-blue-200 rounded-lg"
   >
@@ -76,7 +76,6 @@
     <div class="grid grid-cols-12">
       <button
         [disabled]="form.invalid"
-        (click)="isEditingUser ? editUser(form) : addUser(form)"
         class="col-start-4 disabled:bg-gray-500 col-span-1 px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-500 transition text-white"
       >
         {{ isEditingUser ? "Update" : "Submit" }}
