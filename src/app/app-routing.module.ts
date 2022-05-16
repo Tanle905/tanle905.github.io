@@ -8,11 +8,11 @@ import { UserListComponent } from './admin/user-list/user-list.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'admin', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   {
     path: 'admin',
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
     component: AdminComponent,
     children: [
       { path: 'user', component: UserListComponent },
